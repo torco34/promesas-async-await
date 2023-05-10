@@ -31,7 +31,7 @@ sum(4, 8)
 function getData() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      let data = {
+      const data = {
         id: 1,
         name: "Saul",
         edad: 18,
@@ -43,3 +43,45 @@ function getData() {
 getData()
   .then((data) => console.log(data))
   .catch((err) => console.err(err));
+
+//  Crea una función llamada getUserData que tome un ID de usuario como argumento y
+// devuelva una promesa que resuelva con el objeto de datos del usuario con ese ID
+// (puedes simular la respuesta de una API externa usando getData).
+
+function getUserData(userId) {
+  return new Promise((resolve, reject) => {
+    fetch(`https://example.com/api/users/${userId}`)
+      .then((response) => {
+        if (response.ok) {
+          resolve(response.json());
+        } else {
+          reject(`Error fetching user data for user ID ${userId}`);
+        }
+      })
+      .catch((error) => {
+        reject(`Error fetching user data for user ID ${userId}: ${error}`);
+      });
+  });
+}
+getUserData(123)
+  .then((userData) => {
+    console.log(userData);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+//EJERCICIO 3
+// function getUserData(userId){
+// return new Promise((resolve, reject) => {
+//     fetch(`https://example.com/api/users/${userId}`)
+//     then(response => {
+//         if(response.ok){
+//             resolve(response.json())
+//         }else{
+//             reject(`erro no funcion`)
+//         }
+
+//     })
+// })
+// }
