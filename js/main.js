@@ -50,7 +50,7 @@ getData()
 
 function getUserData(userId) {
   return new Promise((resolve, reject) => {
-    fetch(`${userId}`)
+    fetch(`https://example.com/api/users/${userId}`)
       .then((response) => {
         if (response.ok) {
           resolve(response.json());
